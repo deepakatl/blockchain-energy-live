@@ -29,7 +29,7 @@ services:
     depends_on:
       - validator
     volumes:
-      - '.:/project/energyunit'
+      - '.:/project/energylive'
 
 
 

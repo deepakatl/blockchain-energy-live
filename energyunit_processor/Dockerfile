@@ -34,7 +34,7 @@ RUN echo "deb http://repo.sawtooth.me/ubuntu/ci xenial universe" >> /etc/apt/sou
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
     && apt-get install -y nodejs
 
-WORKDIR /project/cookiejar/javascript_processor
+WORKDIR /project/energylive/energyunit_processor
 
 CMD npm install && npm start
 
