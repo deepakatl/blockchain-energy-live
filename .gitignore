@@ -1,5 +1,6 @@
 energyunit_processor/node_modules/
 energylive-web-client/node_modules/
+energylive-web-client/dist/
 energylive-web-server/node_modules/
 javascript_processor/
 
