@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var EnergyService = require('../energy-service');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -17,6 +18,8 @@ router.post('/', function (req, res) {
     //         res.status(200).send(user);
     //     });
     console.log("Request reach here - update solar energy");
+    let energyService = new EnergyService();
+    energyService.generateEnergy(510);
     res.status(200).send({result: 'success',
 			token: 101,
             name: 'Deepak',
