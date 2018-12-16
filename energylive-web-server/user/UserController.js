@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const UserService = require('./user-service');
+const userService = new UserService();
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -10,17 +12,20 @@ const PrivateKeyUtil = require('../crypto/privatekeyutil');
 // CREATES A NEW USER
 router.post('/register', function (req, res) {
     let privateKey = new PrivateKeyUtil().getRandomPK();
-    console.log("PK =" + privateKey);
+    let privateKeyBytes = privateKey.asBytes();
+    console.log("PK =" + privateKeyBytes);
     User.create({
         firstName : req.body.firstName,
         lastName: req.body.lastName,
         email : req.body.email,
         mobile: req.body.mobile,
         password : req.body.password,
-        privatekey : privateKey
+        privatekey : privateKeyBytes
     }, 
     function (err, user) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        console.log("Going to create user in chain");
+        userService.createUser(user, privateKey);
         res.status(200).send(user);
     });    
 });

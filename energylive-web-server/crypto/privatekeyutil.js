@@ -26,7 +26,7 @@ class PrivateKeyUtil{
         console.log(privateKey);
 	    let privateKeyHex = Secp256k1PrivateKey.fromHex(privateKey.asBytes());
 	    console.log("Hex =" + privateKeyHex);
-        return privateKey.asBytes();
+        return privateKey;
     }
 
     writeRandomPK(){
