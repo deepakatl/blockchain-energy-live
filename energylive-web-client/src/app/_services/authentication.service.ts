@@ -5,16 +5,19 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {
-    AUTH_URL ="http://localhost:3000/users/authenticate";
+    AUTH_URL ="http://localhost:3000/users/login";
     constructor(private http: HttpClient) { }
 
-    login(username: string, password: string):any {
-          const fetchOptions = {
+    login(email: string, password: string):any {
+        const fetchOptions = {
             method: 'POST',
-            
             headers: {
-              'Content-Type': 'application/octet-stream'
-            }
+              'Content-Type': 'application/json'
+            },
+            body : JSON.stringify({
+                email: email,
+                password : password
+            })
           }
           
           return fetch(this.AUTH_URL , fetchOptions)
