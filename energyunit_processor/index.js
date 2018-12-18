@@ -22,7 +22,8 @@
 //works in strict mode
 const { TransactionProcessor } = require('sawtooth-sdk/processor')
 //requires the module specified in ().
-const EnergyUnitHandler = require('./EnergyUnitHandler')
+const EnergyUnitHandler = require('./EnergyUnitHandler');
+
 
 if (process.argv.length < 3) {
   console.log('missing a validator address')
@@ -33,7 +34,7 @@ const address = process.argv[2]
 
 const transactionProcessor = new TransactionProcessor(address)
 
-transactionProcessor.addHandler(new EnergyUnitHandler())
+transactionProcessor.addHandler(new EnergyUnitHandler());
  /*addHandler adds the given handler to the transaction processor so
    it can receive transaction processing requests. All handlers must
    be added prior to starting the processor.

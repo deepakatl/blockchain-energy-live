@@ -30,7 +30,19 @@ services:
       - validator
     volumes:
       - '.:/project/energylive'
-
+  user-processor:
+    container_name: user-processor
+    build:
+      context: .
+      dockerfile: ./user_processor/Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    depends_on:
+      - validator
+    volumes:
+      - '.:/project/energylive'
 
 
 #   cookiejar-client:

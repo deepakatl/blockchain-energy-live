@@ -14,18 +14,29 @@ router.post('/register', function (req, res) {
     let privateKey = new PrivateKeyUtil().getRandomPK();
     let privateKeyBytes = privateKey.asBytes();
     console.log("PK =" + privateKeyBytes);
-    User.create({
+    let newUser = {
         firstName : req.body.firstName,
         lastName: req.body.lastName,
         email : req.body.email,
         mobile: req.body.mobile,
         password : req.body.password,
         privatekey : privateKeyBytes
-    }, 
+    }
+    User.create(newUser, 
     function (err, user) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
-        console.log("Going to create user in chain");
-        userService.createUser(user, privateKey);
+        console.log("Going to create user in chain " + user);
+
+        userService.createUser(newUser, privateKey);
+
+        // userService.createUser({
+        //     firstName : 'ddd',
+        //     lastName: 'ssss',
+        //     email : 'eeeee',
+        //     mobile: '99999',
+        //     password : 'oooo',
+        //     privatekey : privateKey.asBytes()
+        // }, privateKey);
         res.status(200).send(user);
     });    
 });

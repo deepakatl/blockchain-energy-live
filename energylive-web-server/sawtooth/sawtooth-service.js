@@ -17,7 +17,7 @@ class SawtoothRestService{
     constructor(url) { 
         //const http =new HttpClient();
         this.REST_API_BASE_URL = url;
-        this.FAMILY_NAME = 'energyunit';
+        this.FAMILY_NAME = 'user';
         this.FAMILY_VERSION = '1.0';
         
       }
@@ -45,8 +45,8 @@ class SawtoothRestService{
         // Encode the payload
         const payload = this.getEncodedData(action, values);
     
-        const transactionsList = this.getTransactionsList(payload, userKeyAddress, signer);
-        const batchList = this.getBatchList(transactionsList, signer);
+        const transactionsList = this.getTransactionsList(payload, userKeyAddress, signer, publicKey);
+        const batchList = this.getBatchList(transactionsList, signer, publicKey);
     
         // Send the batch to REST API
         await this.sendToRestAPI(batchList)
@@ -153,10 +153,10 @@ class SawtoothRestService{
       /*------------------------------------*/
     
       /*-------------Creating transactions & batches--------------------*/
-       getTransactionsList(payload, sawtoothAddress, signer) {
+       getTransactionsList(payload, sawtoothAddress, signer, publicKey) {
         // Create transaction header
         //let sawtoothAddress = address + this.userKeyAddress;
-        const transactionHeader = this.getTransactionHeaderBytes([sawtoothAddress], [sawtoothAddress], payload);
+        const transactionHeader = this.getTransactionHeaderBytes([sawtoothAddress], [sawtoothAddress], payload, publicKey);
         // Create transaction
         const transaction = this.getTransaction(transactionHeader, payload, signer);
         // Transaction list
@@ -165,12 +165,12 @@ class SawtoothRestService{
         return transactionsList
       }
     
-       getBatchList(transactionsList, signer) {
+       getBatchList(transactionsList, signer, publicKey) {
         // List of transaction signatures
         const transactionSignatureList = transactionsList.map((tx) => tx.headerSignature);
     
         // Create batch header
-        const batchHeader = this.getBatchHeaderBytes(transactionSignatureList);
+        const batchHeader = this.getBatchHeaderBytes(transactionSignatureList, publicKey);
         // Create the batch
         const batch = this.getBatch(batchHeader, transactionsList, signer);
         // Batch List
@@ -179,14 +179,14 @@ class SawtoothRestService{
         return batchList;
       }
     
-       getTransactionHeaderBytes(inputAddressList, outputAddressList, payload) {
+       getTransactionHeaderBytes(inputAddressList, outputAddressList, payload, publicKey) {
         const transactionHeaderBytes = protobuf.TransactionHeader.encode({
           familyName: this.FAMILY_NAME,
           familyVersion: this.FAMILY_VERSION,
           inputs: inputAddressList,
           outputs: outputAddressList,
-          signerPublicKey: this.publicKey,
-          batcherPublicKey: this.publicKey,
+          signerPublicKey: publicKey,
+          batcherPublicKey: publicKey,
           dependencies: [],
           payloadSha512: this.hash(payload),
           nonce: (Math.random() * 1000).toString()
@@ -205,9 +205,9 @@ class SawtoothRestService{
         return transaction;
       }
     
-       getBatchHeaderBytes(transactionSignaturesList) {
+       getBatchHeaderBytes(transactionSignaturesList, publicKey) {
         const batchHeader = protobuf.BatchHeader.encode({
-          signerPublicKey: this.publicKey,
+          signerPublicKey: publicKey,
           transactionIds: transactionSignaturesList
         }).finish();
     

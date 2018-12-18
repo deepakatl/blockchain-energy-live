@@ -38,7 +38,7 @@ class SawtoothRestService{
     constructor(url) { 
         //const http =new HttpClient();
         this.REST_API_BASE_URL = url;
-        this.FAMILY_NAME = 'energyunit';
+        this.FAMILY_NAME = 'user';
         this.FAMILY_VERSION = '1.0';
         const context = createContext('secp256k1');
         const pkr = new PrivateKeyReader('pk1.pem');

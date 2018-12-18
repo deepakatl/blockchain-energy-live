@@ -116,7 +116,7 @@ class EnergyUnitHandler extends TransactionHandler{
     }
 
     // Select the action to be performed
-    console.log("Action " + update.action);
+    console.log("Action EnergyHandler" + update.action);
     let actionFn
     if (update.action === 'generate_solar') { 
       actionFn = updateEnergyUnit
