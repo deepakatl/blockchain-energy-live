@@ -40,11 +40,11 @@ const CJ_NAMESPACE = _hash(CJ_FAMILY).substring(0, 6)
 //function to obtain the payload obtained from the client
 const _decodeRequest = (payload) =>
   new Promise((resolve, reject) => {
-    payload = payload.toString().split(',')
+    payload = payload.toString().split('~')
     if (payload.length === 2) {
       resolve({
         action: payload[0],
-        quantity: payload[1]
+        user: payload[1]
       })
     }
    
@@ -97,6 +97,7 @@ class UserHandler extends TransactionHandler{
     super(CJ_FAMILY,['1.0'],[CJ_NAMESPACE])
   }
   apply(transactionProcessRequest, context){
+    console.log("PayLoad = " + transactionProcessRequest.payload);
     return _decodeRequest(transactionProcessRequest.payload)
     .catch(_toInternalError)
     .then((update) => {
@@ -106,24 +107,21 @@ class UserHandler extends TransactionHandler{
     if (!update.action) {
       throw new InvalidTransaction('Action is required')
     }
-    let quantity = update.quantity
-    if (quantity === null || quantity === undefined) {
+    let user = update.user
+    if (user === null || user === undefined) {
       throw new InvalidTransaction('Value is required')
     }
-    quantity = parseInt(quantity)
-    if (typeof quantity !== "number" ||  quantity <= MIN_VALUE) {
-      throw new InvalidTransaction(`Value must be an integer ` + `no less than 1`)
-    }
+
 
     // Select the action to be performed
-    console.log("Action user Handler" + update.action);
+    console.log("UserHandler action =" + update.action);
     let actionFn
-    if (update.action === 'generate_solar') { 
+    if (update.action === 'create_user') { 
       actionFn = updateEnergyUnit
     }
     
     else {	
-      throw new InvalidTransaction(`Action must be bake or eat `)		
+      throw new InvalidTransaction(`Action must be create_user`)		
     }
 
     // Get the current state, for the key's address:
@@ -134,7 +132,7 @@ class UserHandler extends TransactionHandler{
     // else
     //   getPromise = context.getState([Address])
     let actionPromise = getPromise.then(
-      actionFn(context,Address, quantity, userPublicKey)
+      actionFn(context,Address, user, userPublicKey)
       )
     
     return actionPromise.then(addresses => {
@@ -142,9 +140,6 @@ class UserHandler extends TransactionHandler{
         throw new InternalError('State Error!')
       }  
     })
-
-   
-   
   })
  }
 }

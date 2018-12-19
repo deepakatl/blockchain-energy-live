@@ -26,8 +26,8 @@ router.post('/register', function (req, res) {
     function (err, user) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
         console.log("Going to create user in chain " + user);
-
-        userService.createUser(newUser, privateKey);
+        delete newUser.privatekey;
+        userService.createUser(JSON.stringify(newUser), privateKey);
 
         // userService.createUser({
         //     firstName : 'ddd',

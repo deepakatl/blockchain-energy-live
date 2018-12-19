@@ -5,6 +5,7 @@ var { createHash } = require('crypto-browserify');
 
 var protobuf  = require("sawtooth-sdk/protobuf");
 var { TextEncoder, TextDecoder} =require("text-encoding/lib/encoding");
+const cbor = require('cbor')
 var {Buffer} =require('buffer/');
 var {Secp256k1PrivateKey} = require('sawtooth-sdk/signing/secp256k1');
 
@@ -99,8 +100,9 @@ class SawtoothRestService{
     
     
        getEncodedData(action, values) {
-        const data = action + "," + values[0];
+        const data = action + "~" + values[0];
         return new TextEncoder('utf8').encode(data);
+        //return cbor.encode(data)
       }
     
        getDecodedData(responseJSON) {
@@ -183,6 +185,7 @@ class SawtoothRestService{
         const transactionHeaderBytes = protobuf.TransactionHeader.encode({
           familyName: this.FAMILY_NAME,
           familyVersion: this.FAMILY_VERSION,
+          payloadEncoding: 'application/json',
           inputs: inputAddressList,
           outputs: outputAddressList,
           signerPublicKey: publicKey,

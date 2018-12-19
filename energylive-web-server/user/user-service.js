@@ -13,8 +13,12 @@ class UserService{
         let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
         //this.sawtoothService.hash(this.FAMILY_TYPE_SOLAR).substr(0, 4);
         
-        let response = this.sawtoothService.sendData("generate_solar", [user], address, privateKey)//;
+        let response = this.sawtoothService.sendData("create_user", [user], address, privateKey)//;
         console.log("Created User = " + user);
+    }
+
+    authenticate(user, privateKey){
+
     }
 
     print(){
@@ -24,13 +28,13 @@ class UserService{
 
 // let u = new UserService();
 // let privateKey = new PrivateKeyUtil().getRandomPK();
-// u.createUser({
+// u.createUser(JSON.stringify({
 //     firstName : 'ddd',
 //     lastName: 'ssss',
 //     email : 'eeeee',
 //     mobile: '99999',
 //     password : 'oooo',
-//     privatekey : privateKey.asBytes()
-// }, privateKey);
+    
+// }), privateKey);
 
 module.exports = UserService;
