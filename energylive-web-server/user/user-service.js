@@ -18,7 +18,10 @@ class UserService{
     }
 
     authenticate(user, privateKey){
-
+        console.log("Going to authenticate  User in chain");
+        let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
+        let response = this.sawtoothService.sendData("authenticate_user", [user], address, privateKey)//;
+        console.log("Authentication response =" + response);
     }
 
     print(){

@@ -72,23 +72,33 @@ const _setEntry = (context, address, stateValue) => {
 }
 
 //function to bake a cookie
-const updateEnergyUnit =(context, address, quantity, userPK)  => (possibleAddressValues) => {
+const createUser =(context, address, user, userPK)  => (possibleAddressValues) => {
   let stateValueRep = possibleAddressValues[address]
-  let newCount = 0
-  let count
   if (stateValueRep == null || stateValueRep == ''){
-    console.log("No previous cookies, creating new cookie jar ")
-    newCount = quantity
+    console.log("No previous user, creating new user ")
+    //newCount = user
   }
   else{
-    count = decoder.decode(stateValueRep)
-    newCount = parseInt(count) + quantity
-    console.log("Cookies in the jar:"+newCount)
+    let existingUser = decoder.decode(stateValueRep);
+    console.log("Existing User "+ existingUser);
+    console.log("Modified to User "+ user);
   }
   
-  let strNewCount = newCount.toString()
+  return _setEntry(context, address, user)
+}
+
+const authenticate =(context, address, user, userPK)  => (possibleAddressValues) => {
+  let stateValueRep = possibleAddressValues[address]
+  if (stateValueRep == null || stateValueRep == ''){
+    console.log("No previous user, failed to authenticate");
+    //newCount = user
+  }
+  else{
+    let existingUser = decoder.decode(stateValueRep);
+    console.log("Existing User "+ existingUser);
+  }
   
-  return _setEntry(context, address, strNewCount)
+  return address;
 }
 
 
@@ -117,9 +127,10 @@ class UserHandler extends TransactionHandler{
     console.log("UserHandler action =" + update.action);
     let actionFn
     if (update.action === 'create_user') { 
-      actionFn = updateEnergyUnit
+      actionFn = createUser
+    }else if(update.action === 'authenticate_user'){
+      actionFn = authenticate;
     }
-    
     else {	
       throw new InvalidTransaction(`Action must be create_user`)		
     }

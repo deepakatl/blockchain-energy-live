@@ -9,10 +9,16 @@ router.use(bodyParser.json());
 const User = require('./User');
 const PrivateKeyUtil = require('../crypto/privatekeyutil');
 
+function toHexString(byteArray) {
+    return Array.from(byteArray, function(byte) {
+      return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+    }).join('')
+  }
+
 // CREATES A NEW USER
 router.post('/register', function (req, res) {
     let privateKey = new PrivateKeyUtil().getRandomPK();
-    let privateKeyBytes = privateKey.asBytes();
+    let privateKeyBytes = toHexString(privateKey.asBytes());
     console.log("PK =" + privateKeyBytes);
     let newUser = {
         firstName : req.body.firstName,
@@ -48,6 +54,19 @@ router.post('/login', function (req, res) {
     }, 
     function (err, user) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        if(user !== '' || user !== undefined){
+            console.log(user);
+            let privateKey = user[0].privatekey;
+            console.log(typeof privateKey);
+            //const hexPrivateKey = new Buffer(privateKey).toString('hex');
+            const hexPrivateKey = privateKey.toString('hex');
+            privateKey = PrivateKeyUtil.getPrivateKeyFromString(hexPrivateKey);
+            delete user[0].privatekey;
+            delete user[0]._id;
+            delete user[0].__v;
+            userService.authenticate(JSON.stringify(user[0]), privateKey);
+
+        }
         res.status(200).send(user);
     });    
 });

@@ -13,6 +13,11 @@ class PrivateKeyUtil{
 	}
     }
 
+    static getPrivateKeyFromString(content){
+        let privateKey =  Secp256k1PrivateKey.fromHex(content);
+        return privateKey;
+    }
+
     getPrivateKey(){
         let contents = fs.readFileSync(this.file , 'hex');
         console.log(contents);
