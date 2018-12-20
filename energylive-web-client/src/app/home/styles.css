@@ -232,11 +232,12 @@ display: none;
 
 @-webkit-keyframes glow {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px rgb(179, 10, 10), 0 0 30px #2825cc, 0 0 40px #403de0, 0 0 50px #2935e0, 0 0 60px #380cf8, 0 0 70px #6e21eb,  0 0 100px #460ab6;
+    text-shadow: 0 0 5px rgb(243, 85, 132),0 0 11px rgb(236, 51, 196),0 0 10px #fff, 0 0 20px rgb(179, 10, 10), 0 0 30px #2825cc, 0 0 40px #403de0, 0 0 50px #2935e0, 0 0 60px #2825cc, 0 0 70px #403de0, 0 0 80px #2935e0,0 0 140px #2825cc, 0 0 200px #2825cc, 0 0 280px #2935e0;
+
   }
   
   to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #4df3ff, 0 0 40px #4df3ff, 0 0 50px #4df3ff, 0 0 60px #4df3ff, 0 0 70px #4df3ff, 0 0 80px #4df3ff, 0 0 100px #4df3ff;
+    text-shadow: 0 0 7px rgb(202, 40, 121),0 0 20px #fff, 0 0 30px #4df3ff, 0 0 40px #4df3ff, 0 0 50px #4df3ff, 0 0 60px #4df3ff, 0 0 70px #4df3ff, 0 0 80px #4df3ff, 0 0 100px #4df3ff;
   }
 }
 
