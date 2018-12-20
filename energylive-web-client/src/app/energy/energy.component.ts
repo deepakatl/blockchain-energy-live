@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SawtoothService } from '../sawtooth.service';
 
-@Component({
-  selector: 'app-generate',
-  template: `
+
+@Component({templateUrl: 'energy.component.html'})
+  selector: 'app-generate', `
   <div class="generate">
   <div class="form">
     <form class="generate" (submit)="generateEnergy($event)">
@@ -22,7 +22,7 @@ import { SawtoothService } from '../sawtooth.service';
     "styles.css"
   ]
 })
-export class EnergyComponent implements OnInit {
+export class GenerateComponent implements OnInit {
 
   constructor(private Data : SawtoothService,private router :RouterModule) { }
 
@@ -67,13 +67,55 @@ import { SawtoothService } from '../sawtooth.service';
     "styles.css"
   ]
 })
-export class BakeComponent implements OnInit {
+export class ConsumeComponent implements OnInit {
 
   constructor(private Data : SawtoothService,private router :RouterModule) { }
 
   ngOnInit() {
   }
     consumeEnergy(event){
+   
+      event.preventDefault()
+      const target = event.target
+      const energyvalue = target.querySelector('#energy_id').value;
+      this.Data.sendData("consume", energyvalue);
+      console.log(energyvalue);
+    }
+  
+
+}
+
+import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { SawtoothService } from '../sawtooth.service';
+
+@Component({
+  selector: 'app-count',
+  template: `
+  <div class="count">
+  <div class="form">
+    <form class="count" (submit)="countEnergy($event)">
+  <input id="count_id" type="text" placeholder="Energy in units KWh"/>
+ 
+  <button id="submit" type="submit" >count</button>
+
+  </form>
+  </div>
+</div>
+
+  `,
+  styles: [
+    "../node_modules/angular2-busy/build/style/busy.css",
+    "styles.css"
+  ]
+})
+export class CountComponent implements OnInit {
+
+  constructor(private Data : SawtoothService,private router :RouterModule) { }
+
+  ngOnInit() {
+  }
+    countEnergy(event){
    
       event.preventDefault()
       const target = event.target
