@@ -1,0 +1,329 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body{
+background-image: url(index.png);
+height: 100vh;
+background-size: cover;
+background-position: center;
+background-repeat: repeat;
+}
+
+.center {
+margin: auto;
+width: 60%;
+padding: 10px;
+}
+
+ul{
+margin-left: 170px;
+margin-right: 100px;
+padding: 0px;
+list-style: none;
+}
+ul li{
+float: left;
+width: 200px;
+height: 40px;
+background-color: white;
+opacity: .8;
+line-height: 40px;
+text-align: center;
+font-size: 20px;    
+margin-right: 2px;
+}
+a{
+text-decoration: none;
+color: black;
+display: block;
+}
+/*a:hover{
+background-color: whitesmoke;
+}*/
+.form{
+position: static;
+z-index: 1;
+background:#6e9473;
+opacity: 0.85;
+max-width: 300px;
+margin-top: 150px;
+margin-bottom: 400px;
+margin-left: auto;
+margin-right: auto;
+padding: 15px;
+text-align: center;
+background-image: linear-gradient(to bottom,  #0c8b94, #0d3041);
+box-shadow: inset 0 -1px rgba(0, 0, 0, 0.03), 0 1px rgba(0, 0, 0, 0.04);
+
+}
+.form input{
+font-family: "Calibri",sans-serif;
+outline: 1;
+background: #f2f2f2;
+width: 100%;
+border: 0;
+border: 1px solid #ccc;
+border-radius: 4px;
+margin: 0 0 15px;
+padding: 15px;
+box-sizing: border-box;
+font-size: 14px;
+border-bottom: 1px solid #d8d8d8;
+resize: vertical;
+}
+.form button{
+font-family: "Calibri",sans-serif;
+text-transform: uppercase;
+outline: 0;
+padding: 5px;
+color: #FFFFFF;
+font-size: 14px;
+float: right;
+cursor: pointer;
+display: block;
+width: 100%;
+height: 42px;
+margin-top: 20px;
+font-size: 16px;
+font-weight: normal;
+color: #ffffff;
+text-align: center;
+text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+background: #fcfcfc;
+border: 1px solid;
+border-color: #d8d8d8 #d1d1d1 #c3c3c3;
+border-radius: 2px;
+cursor: pointer;
+background-image: linear-gradient(to bottom, #1e4c61, #1e4c65);
+box-shadow: inset 0 -1px rgba(0, 0, 0, 0.03), 0 1px rgba(0, 0, 0, 0.04);
+}
+.button:after {
+content: "";
+background: #90EE90;
+display: block;
+position: absolute;
+padding-top: 300%;
+padding-left: 350%;
+margin-left: -20px!important;
+margin-top: -120%;
+opacity: 0;
+transition: all 0.0
+}
+.button:active:after {
+padding: 0;
+margin: 0;
+opacity: 1;
+transition: 0s
+}
+.form .login-form .button{
+font-family: "Roboto",sans-serif;
+text-transform: uppercase;
+outline: 0;
+background: rgb(20, 197, 26);
+width: 100%;
+border: 0;
+padding: 15px;
+color: #FFFFFF;
+font-size: 14px;
+cursor: pointer;
+
+display: block;
+width: 100%;
+height: 42px;
+margin-top: 25px;
+font-size: 16px;
+font-weight: bold;
+color: #494d59;
+text-align: center;
+text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+background: #fcfcfc;
+border: 1px solid;
+border-color: #d8d8d8 #d1d1d1 #c3c3c3;
+border-radius: 2px;
+cursor: pointer;
+background-image: linear-gradient(to bottom, #60a83a, #7dbe52);
+box-shadow: inset 0 -1px rgba(0, 0, 0, 0.03), 0 1px rgba(0, 0, 0, 0.04);
+
+
+}
+.form .REgister{
+
+display: none;
+
+}
+.container {
+border-radius: 5px;
+background-color: #f2f2f2;
+padding: 20px;
+}
+/* Floating column for labels: 25% width */
+.col-25 {
+float: left;
+width: 25%;
+margin-top: 6px;
+}
+/* Floating column for inputs: 75% width */
+.col-75 {
+float: left;
+width: 75%;
+margin-top: 6px;
+}
+/* Clear floats after the columns */
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+.col-25, .col-75, input[type=submit] {
+  width: 100%;
+  margin-top: 0;
+}
+}
+.form paragraph {
+ 
+  font-family:proxima-nova, sans-serif !important;
+  font-style: normal;
+  font-size: 12px;
+  font-weight:400;
+  letter-spacing: 3px;
+  color: #231f20;
+  text-transform: uppercase;
+  line-height: 1.5em;
+  
+}
+.form h2 {
+ 
+font-family:cal, sans-serif !important;
+font-style:normal ;
+font-size: 20px;
+font-weight:bold;
+letter-spacing: 2px;
+color: #ffffff;
+text-transform: uppercase;
+line-height: 1.5em;
+
+}
+
+.card {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+max-width: 300px;
+max-height:1200px;
+margin: auto;
+margin-top : 50px;
+text-align: center;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.circle {
+  height: 280px;
+  width: 280px;
+  background-color: rgb(241, 237, 237);
+  border-radius: 50%;
+ 
+position: static;
+z-index: 1;
+background:#6e9473;
+opacity: 0.85;
+max-width: 600px;
+margin-top: 350px;
+margin-bottom: 10;
+margin-left: auto;
+margin-right: auto;
+padding: 15px;
+text-align: center;
+background-image: linear-gradient(to bottom,  #0c8b94, #0d3041);
+box-shadow: inset 0 -1px rgba(0, 0, 0, 0.03), 0 1px rgba(0, 0, 0, 0.04);
+
+}
+
+.circle h2 {
+ 
+  font-family:cal, sans-serif !important;
+  font-style:normal ;
+  font-size: 16px;
+  font-weight:bold;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.5em;
+}
+
+.circle button{
+  font-family: proxima-nova, sans-serif !important;
+  text-transform: uppercase;
+  outline: 0;
+  padding: 5px;
+  color: #FFFFFF;
+  float: right;
+  cursor: pointer;
+  display: block;
+  width: 30%;
+  height: 50px;
+  margin-top: auto;
+  margin-right: 100px;
+  margin-left: auto;
+  font-size: 20px;
+  font-weight: normal;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+  letter-spacing: 2px;
+  background: #fcfcfc;
+  border: 0.25px solid;
+  border-color: #5e5c5c #4d4b4b #1b1b1b;
+  border-radius: 0.5px;
+  cursor: pointer;
+  opacity: 0.8;
+  background-image: linear-gradient(to bottom, #1e4c61, #010405);
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.03), 0 1px rgba(0, 0, 0, 0.04);
+  }
+
+  .circle input{
+    font-family: "Calibri",sans-serif;
+    outline: 1;
+    background: #f2f2f2;
+    width: 80%;
+    border: 0;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin: 0 0 15px;
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 10px;
+    border-bottom: 1px solid #d8d8d8;
+    resize: vertical;
+    }
+
+    .glow {
+      font-size: 100px;
+      font-family:proxima-nova, sans-serif !important;
+      letter-spacing: 1px;
+      color: rgb(72, 223, 228);
+      text-align: center;
+      margin-left:auto;
+      margin-top : 600px;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+    
+    @-webkit-keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px rgb(179, 10, 10), 0 0 30px #2825cc, 0 0 40px #403de0, 0 0 50px #2935e0, 0 0 60px #380cf8, 0 0 70px #6e21eb,  0 0 100px #460ab6;
+      }
+      
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #4df3ff, 0 0 40px #4df3ff, 0 0 50px #4df3ff, 0 0 60px #4df3ff, 0 0 70px #4df3ff, 0 0 80px #4df3ff, 0 0 100px #4df3ff;
+      }
+    }

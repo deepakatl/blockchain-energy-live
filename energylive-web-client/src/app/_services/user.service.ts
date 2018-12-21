@@ -5,33 +5,25 @@ import { User } from '../_models';
 
 @Injectable()
 export class UserService {
-    AUTH_URL ="http://localhost:3000/users/register";
     constructor(private http: HttpClient) { }
 
-    register(firstName: string, lastName: string, email: string, mobile: string, password: string):any {
-          const fetchOptions = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body : JSON.stringify({firstName: firstName, 
-                lastName: lastName,
-                email: email,
-                mobile: mobile,
-                password : password
-            })
-          }
-          
-          return fetch(this.AUTH_URL , fetchOptions)
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(user) {
-                 console.log(JSON.stringify(user));
-                 localStorage.setItem('currentUser', JSON.stringify(user));
-                 return user;
-             });
+    getAll() {
+        return this.http.get<User[]>(`/users`);
     }
 
-    
+    getById(id: number) {
+        return this.http.get(`/users/` + id);
+    }
+
+    register(user: User) {
+        return this.http.post(`/users/register`, user);
+    }
+
+    update(user: User) {
+        return this.http.put(`/users/` + user.id, user);
+    }
+
+    delete(id: number) {
+        return this.http.delete(`/users/` + id);
+    }
 }

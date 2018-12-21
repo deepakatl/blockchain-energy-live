@@ -1,11 +1,40 @@
-<h1>Hi {{currentUser.firstName}}!</h1>
-<p>You're logged in with Angular 6!!</p>
-<h3>All registered users:</h3>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
-<p><a [routerLink]="['/energy']">Energy</a></p>
-<p><a [routerLink]="['/login']">Logout</a></p>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Energy Live</title>
+  <style>
+body {
+        background-image: url("suncontract-cover.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+  
+  }</style>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+ <body>
+  
+    <div class="center">  
+  <div class="form"> 
+      <div class="card">  
+  <h1>Welcome to Energy Live</h1>  
+  <paragraph>Energy Live is a blockchain based software platform and
+    an energy ecosystem service that connect people. It can bridge the 
+    gap between solar energy generators and elctricity consumers including EV owners.
+    Its an application that makes sure your asset is stored and 
+    maintained in an immutable ledger. Be self powered.</p>
+     <button class="button">REGISTER</button>   
+     <button class="button">LOGIN</button> 
+    </div>
+     </div>
+     </div>
+     <div class="glow">
+        <h5>CHARGING</h5>
+     </div>
+     
+     </body>
+</body>
+</html> 
+

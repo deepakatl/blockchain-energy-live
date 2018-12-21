@@ -12,11 +12,13 @@ import { routing }        from './app.routing';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService, EnergyService } from './_services';
+import { AlertService, AuthenticationService, UserService } from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
-import { EnergyComponent } from './energy/energy.component';
+import { GenerateComponent }      from './energy/generate.component';
+import { ConsumeComponent } from './energy/consume.component';
+import { CountComponent } from './energy/count.component';
 
 @NgModule({
     imports: [
@@ -31,14 +33,15 @@ import { EnergyComponent } from './energy/energy.component';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        EnergyComponent
+        GenerateComponent,
+	ConsumeComponent
+	CountComponenet
     ],
     providers: [
         AuthGuard,
         AlertService,
         AuthenticationService,
         UserService,
-        EnergyService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

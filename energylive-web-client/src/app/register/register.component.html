@@ -1,4 +1,47 @@
-<h2>Register</h2>
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+  <h1 class="register-title">Create an account</h1>
+  <form class="register">
+    
+    <input type="email" class="register-input" placeholder="Email address">
+    <input type="password" class="register-input" placeholder="Password">
+    <input type="Name" class="register-input" placeholder="Name">
+    <input type="Adress" class="register-input" placeholder="Address">
+    <input type="Mobile" class="register-input" placeholder="Mobile">
+    
+    <input type="submit" value="submit" class="register-button">
+  </form>
+
+  
+</body>
+</html>
+
+
+<!--DOCTYPE html>
+<html>
+
+<head>
+  <title>EL registration</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    
+        <div class="form">  
+<h2>Register your account</h2>
+
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="firstName">First Name</label>
@@ -15,15 +58,8 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="email">Username</label>
-        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Username is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="mobile">Mobile</label>
-        <input type="text" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <label for="username">email id</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">Username is required</div>
         </div>
@@ -37,8 +73,9 @@
         </div>
     </div>
     <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">Register</button>
+        <button [disabled]="loading" class="form.button">Register</button>
         <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+        <a [routerLink]="['/login']" class="form.button">Cancel</a>
     </div>
+</div>
 </form>

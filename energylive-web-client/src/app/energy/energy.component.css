@@ -1,0 +1,167 @@
+body{
+  background-image: url(1.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  }
+
+
+.card {
+    
+    box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    max-width: 280px;
+    max-height:1200px;
+    margin: auto;
+    text-align: center;
+    background-image: linear-gradient(to bottom,#444441,#99c6d4);
+    opacity: 0.9;
+  }
+  
+  .title {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-family:proxima-nova, sans-serif !important;
+    font-style:normal ;
+    font-weight:bold;
+    letter-spacing: 3px;
+    color: #000000;
+    text-transform: uppercase;
+    line-height: 1.5em;
+  }
+  
+  button {
+    border-color: #6b6969 #444343 #131212;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgb(49, 45, 45);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    background-image: linear-gradient(to bottom, #504b4b, #000000);
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+
+
+
+  @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+.profile
+{
+    font-family: 'Lato', 'sans-serif';
+    }
+.profile 
+{
+/*    height: 321px;
+    width: 265px;*/
+margin-top: 2px;
+padding:1px;
+    display: inline-block;
+    }
+.divider 
+{
+    border-top:2px solid rgba(0, 0, 0, 0.1);
+    }
+.emphasis 
+{
+    border-top: 1px solid transparent;
+    }
+
+.emphasis h2
+{
+    margin-bottom:0;
+    }
+span.tags 
+{
+    background: #1abc9c;
+    font-family:proxima-nova, sans-serif !important;
+    border-radius: 2px;
+    color: #f5f5f5;
+    font-weight: bold;
+    padding: 2px 4px;
+    }
+.profile strong,span,div{
+    text-transform: initial;
+}
+.card h1 {
+   
+    font-family:proxima-nova, sans-serif !important;
+    font-style:normal ;
+    font-size: 15px;
+    font-weight:bold;
+    letter-spacing: 3px;
+    color: #000000;
+    text-transform: uppercase;
+    line-height: 1.5em;
+    
+  }
+  .card h5 {
+   
+    font-family:proxima-nova, sans-serif !important;
+    font-style:normal ;
+    font-size: 12px;
+    font-weight:bold;
+    letter-spacing: .5px;
+    color: #000000;
+    text-transform: lowercase;
+    line-height: 1.5em;
+    
+  }
+  .card h4 {
+   
+    font-family:proxima-nova, sans-serif !important;
+    font-style:normal ;
+    font-size: 12px;
+    font-weight:bold;
+    letter-spacing: 1px;
+    color: #000000;
+    text-transform: uppercase;
+    line-height: 1.5em;
+   
+  }
+
+  .input {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    max-height:1200px;
+    margin:auto;    
+    text-align: center;
+  }
+  .input button {
+    box-shadow: 0 4px 8px 0 rgba(18, 82, 37, 0.2);
+    max-width: 300px;
+    max-height:1200px;
+    font-weight:normal;
+    margin:auto;    
+    text-align: center;
+    background-image: linear-gradient(to bottom, #140c42, #5f5b5b);
+    box-shadow: inset 0 -1px rgba(0, 0, 0, 0.03), 0 1px rgba(0, 0, 0, 0.04);
+  }
+
+  
+  /* If you want the content centered horizontally and vertically */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  /* Style the image inside the centered container, if needed */
+  .centered img {
+    width: 150px;
+    border-radius: 50%;
+  }
