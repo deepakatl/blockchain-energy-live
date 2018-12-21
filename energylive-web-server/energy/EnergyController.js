@@ -7,7 +7,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 //Update produced solar energy
-router.post('/', function (req, res) {
+router.post('/user/updateenergy', function (req, res) {
     // User.create({
     //         name : req.body.name,
     //         email : req.body.email,
