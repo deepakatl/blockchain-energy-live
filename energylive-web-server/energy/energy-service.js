@@ -1,24 +1,23 @@
-var SawtoothService = require('./sawtooth-service');
+var SawtoothService = require('../sawtooth-service');
+const PrivateKeyUtil = require('../crypto/privatekeyutil');
 class EnergyService{
   
     constructor() { 
-        this.FAMILY_NAME = 'energyunit';
-        this.FAMILY_TYPE_SOLAR = 'solar';
-        this.FAMILY_TYPE_WIND = 'wind';
+        this.FAMILY_NAME = 'energy';
+        this.FAMILY_VERSION = '1.0';
         
-        this.sawtoothService = new SawtoothService('http://localhost:4200/api');
+        this.sawtoothService = new SawtoothService('http://localhost:4200/api', this.FAMILY_NAME, this.FAMILY_VERSION);
     }
 
   
-    generateEnergy(energyQuantity){
+    generateEnergy(energyQuantity, privateKey){
         console.log("Going to update generated energy unit");
   
         let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
         //this.sawtoothService.hash(this.FAMILY_TYPE_SOLAR).substr(0, 4);
         
-        
-        
-        let response = this.sawtoothService.sendData("generate_solar", [energyQuantity], address)//;
+        let response = this.sawtoothService.sendData("updateenergy", [energyQuantity], address, privateKey)//;
+       
         console.log("updateGeneratedEnergyUnit = " + response);
     }
   

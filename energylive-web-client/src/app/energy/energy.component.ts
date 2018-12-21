@@ -29,9 +29,9 @@ export class EnergyComponent implements OnInit {
   
     onSubmit() {
         console.log('energyUnit:' + this.energyUpdateForm.get('energyUnit').value);
-        let loginResult = this.energyService.updateEnergy(this.energyUpdateForm.get('energyUnit').value);
+        let loginResult = this.energyService.updateEnergy(this.energyUpdateForm.get('energyUnit').value, 'ttt');
         loginResult.then((result)=>{
-            console.log(result + ' ' + this.router);
+            console.log(result + ' ' + this.router + result);
             this.router.navigate(['home']);
         });
     }

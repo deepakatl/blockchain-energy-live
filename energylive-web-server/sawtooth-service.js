@@ -35,21 +35,13 @@ class SawtoothRestService{
 
     //REST_API_BASE_URL = 'http://localhost:4200/api';
 
-    constructor(url) { 
+    constructor(url, familyName, familyVersion) { 
         //const http =new HttpClient();
         this.REST_API_BASE_URL = url;
-        this.FAMILY_NAME = 'user';
-        this.FAMILY_VERSION = '1.0';
-        const context = createContext('secp256k1');
-        const pkr = new PrivateKeyReader('pk1.pem');
-        // Creating a random private key - In LIVE, we will be using our own private keys
-        //const privateKey = context.newRandomPrivateKey();
-        const privateKey = pkr.getPrivateKey();
-        this.signer = new CryptoFactory(context).newSigner(privateKey);
-        this.publicKey = this.signer.getPublicKey().asHex();
-        // Creating address
-        this.userKeyAddress =  this.hash(this.publicKey).substr(0, 64);
-        //console.log("Storing at: " + this.address);
+        this.FAMILY_NAME = familyName;
+        this.FAMILY_VERSION = familyVersion;
+        
+       
       }
     
      clearLogin(){

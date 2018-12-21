@@ -4,7 +4,7 @@ class UserService{
   
     constructor() { 
         this.FAMILY_NAME = 'user';
-        this.sawtoothService = new SawtoothService('http://localhost:4200/api');
+        this.sawtoothService = new SawtoothService('http://localhost:4200/api', 'user', '1.0');
     }
 
   

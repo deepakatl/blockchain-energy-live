@@ -1,30 +1,42 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var EnergyService = require('../energy-service');
+var EnergyService = require('./energy-service');
+const User = require('../user/User');
+const PrivateKeyUtil = require('../crypto/privatekeyutil');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 //Update produced solar energy
-router.post('/user/updateenergy', function (req, res) {
-    // User.create({
-    //         name : req.body.name,
-    //         email : req.body.email,
-    //         password : req.body.password
-    //     }, 
-    //     function (err, user) {
-    //         if (err) return res.status(500).send("There was a problem adding the information to the database.");
-    //         res.status(200).send(user);
-    //     });
-    console.log("Request reach here - update solar energy");
-    let energyService = new EnergyService();
-    energyService.generateEnergy(510);
-    res.status(200).send({result: 'success',
-			token: 101,
-            name: 'Deepak',
-            totalEnergy : 1000     	
-	});
+router.post('/update', function (req, res) {
+    
+    User.find({
+        email : req.body.email
+    }, 
+    function (err, user) {
+        if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        if(user !== '' || user !== undefined){
+            console.log(user);
+            let privateKey = user[0].privatekey;
+            console.log(typeof privateKey);
+            //const hexPrivateKey = new Buffer(privateKey).toString('hex');
+            const hexPrivateKey = privateKey.toString('hex');
+            privateKey = PrivateKeyUtil.getPrivateKeyFromString(hexPrivateKey);
+            let energy = {
+                email : req.body.email,
+                energyunit: req.body.energyunit,
+            }
+            console.log("Request reach here - update solar energy" + energy);
+            let energyService = new EnergyService();
+            energyService.generateEnergy(energy, privateKey);
+            res.status(200).send({result: 'success',
+			energy	
+            });
+
+        }
+        res.status(200).send("Success");
+    });
 });
 
 module.exports = router;

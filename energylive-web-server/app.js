@@ -7,8 +7,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 var UserController = require('./user/UserController');
-//var EnergyController = require('./energy/EnergyController');
+var EnergyController = require('./energy/EnergyController');
 app.use('/users', UserController);
-//app.use('/energy/updateEnergy', EnergyController);
+app.use('/energy', EnergyController);
 
 module.exports = app;
