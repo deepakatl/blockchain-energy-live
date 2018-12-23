@@ -1,0 +1,26 @@
+<h2>Approve Customers</h2>
+
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let user of users">
+        <th scope="row">{{user._id}}</th>
+        <td>{{user.email}}</td>
+        <td>{{user.firstName}}</td>
+       
+        <td> <input type="text" value="{{user.meterid}}"/></td>
+        <td>{{user.status}}</td>
+        <td>
+            <a [routerLink]="" (click)="approve(user)">Approve</a>
+        </td>
+        <td>
+            <a [routerLink]="" (click)="decline(user)">Decline</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>

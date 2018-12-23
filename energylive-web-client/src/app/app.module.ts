@@ -18,13 +18,18 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { EnergyComponent } from './energy/energy.component';
 import { WebHomeComponent } from './web-home/web-home.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { ApproveUserComponent } from './approve-user/approve-user.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        routing
+        routing,
+        NgbModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -33,7 +38,10 @@ import { WebHomeComponent } from './web-home/web-home.component';
         LoginComponent,
         RegisterComponent,
         EnergyComponent,
-        WebHomeComponent
+        WebHomeComponent,
+        AdminHomeComponent,
+        UpdateUserComponent,
+        ApproveUserComponent
     ],
     providers: [
         AuthGuard,

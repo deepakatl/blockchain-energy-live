@@ -6,7 +6,10 @@ var UserSchema = new mongoose.Schema({
   email: String,
   mobile: String,
   password: String,
-  privatekey: String
+  type: String,
+  privatekey: String,
+  status: String,
+  meterid: String
 });
 mongoose.model('User', UserSchema);
 

@@ -11,6 +11,7 @@ import { AlertService, AuthenticationService } from '../_services';
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
+    loginFailed = false;
     submitted = false;
     returnUrl: string;
 
@@ -49,9 +50,20 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         let loginResult = this.authenticationService.login(this.f.username.value, this.f.password.value);
         loginResult.then((result)=>{
-            console.log(result + ' ' + this.router + result);
-            //localStorage.setItem("user", JSON.stringify(result[0]));;
-            this.router.navigate(['home']);
+            let currentUser = result[0];
+            if(currentUser !== undefined){
+                console.log(result + ' ' + this.router + currentUser);
+                if(currentUser.type === 'admin'){
+                    this.router.navigate(['adminhome']);
+                }else{
+                    this.router.navigate(['home']);
+                }
+            }else{
+                this.loading = false;
+                this.loginFailed = true;
+                this.router.navigate(['login']); 
+            }
+            
         });
     }
 }

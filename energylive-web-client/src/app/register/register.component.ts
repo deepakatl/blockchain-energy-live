@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
             this.f.email.value, this.f.mobile.value, this.f.password.value);
         registerResult.then((result)=>{
             console.log(result + ' ' + this.router);
-            this.router.navigate(['home']);
+            this.router.navigate(['']);
         });
     }
 }

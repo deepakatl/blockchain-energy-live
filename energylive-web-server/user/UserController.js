@@ -26,6 +26,9 @@ router.post('/register', function (req, res) {
         email : req.body.email,
         mobile: req.body.mobile,
         password : req.body.password,
+        type: 'customer',
+        status:'',
+        meterid: '',
         privatekey : privateKeyBytes
     }
     User.create(newUser, 
@@ -50,11 +53,12 @@ router.post('/register', function (req, res) {
 router.post('/login', function (req, res) {
     User.find({
         email : req.body.email,
+        status: 'active',
         password : req.body.password
     }, 
     function (err, user) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
-        if(user !== '' || user !== undefined){
+        if(user[0] !== undefined && user[0] !== '' ){
             console.log(user);
             let privateKey = user[0].privatekey;
             console.log(typeof privateKey);
@@ -71,6 +75,35 @@ router.post('/login', function (req, res) {
     });    
 });
 
+router.post('/getapprovalrequiredusers', function (req, res) {
+    User.find({
+       type: 'customer',
+       status:''
+    }, 
+    function (err, users) {
+        if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        if(users !== '' || users !== undefined){
+            console.log(users);
+            
+        }
+        res.status(200).send(users);
+    });    
+
+});
+
+router.post('/approve', function (req, res) {
+    console.log("User " + JSON.stringify(req.body));
+    let options = { multi: true };
+    req.body.status = 'active';
+    User.findByIdAndUpdate(
+        req.body._id,
+        req.body, {new: true},
+    function (err, user) {
+        if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        res.status(200).send(user);
+    });    
+
+});
 
 // RETURNS ALL THE USERS IN THE DATABASE
 router.get('/*', function (req, res) {
