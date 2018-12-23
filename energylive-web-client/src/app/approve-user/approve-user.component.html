@@ -1,6 +1,6 @@
 <h2>Approve Customers</h2>
 
-
+<p *ngIf="meterIdRequired">MeterId is required</p>
 <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
@@ -8,12 +8,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let user of users">
+      <tr  *ngFor="let user of users; let i= index;">
         <th scope="row">{{user._id}}</th>
         <td>{{user.email}}</td>
         <td>{{user.firstName}}</td>
        
-        <td> <input type="text" value="{{user.meterid}}"/></td>
+        <td> <input type="text" [(ngModel)]="user.meterid"/></td>
         <td>{{user.status}}</td>
         <td>
             <a [routerLink]="" (click)="approve(user)">Approve</a>
