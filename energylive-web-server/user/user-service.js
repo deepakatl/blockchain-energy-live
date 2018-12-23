@@ -13,14 +13,14 @@ class UserService{
         let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
         //this.sawtoothService.hash(this.FAMILY_TYPE_SOLAR).substr(0, 4);
         
-        let response = this.sawtoothService.sendData("create_user", [user], address, privateKey)//;
+        let response = this.sawtoothService.sendData("create", [user], address, privateKey)//;
         console.log("Created User = " + user);
     }
 
     authenticate(user, privateKey){
         console.log("Going to authenticate  User in chain");
         let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
-        let response = this.sawtoothService.sendData("authenticate_user", [user], address, privateKey)//;
+        let response = this.sawtoothService.sendData("authenticate", [user], address, privateKey)//;
         console.log("Authentication response =" + response);
     }
 

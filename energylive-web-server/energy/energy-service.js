@@ -1,4 +1,4 @@
-var SawtoothService = require('../sawtooth-service');
+var SawtoothService = require('../sawtooth/sawtooth-service');
 const PrivateKeyUtil = require('../crypto/privatekeyutil');
 class EnergyService{
   
@@ -16,7 +16,7 @@ class EnergyService{
         let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
         //this.sawtoothService.hash(this.FAMILY_TYPE_SOLAR).substr(0, 4);
         
-        let response = this.sawtoothService.sendData("updateenergy", [energyQuantity], address, privateKey)//;
+        let response = this.sawtoothService.sendData("update", [energyQuantity], address, privateKey)//;
        
         console.log("updateGeneratedEnergyUnit = " + response);
     }
@@ -29,7 +29,7 @@ class EnergyService{
       
       
       
-      let response = this.sawtoothService.sendData("generate_solar", [genValue], address)//;
+      let response = this.sawtoothService.sendData("generate", [genValue], address)//;
       console.log("updateGeneratedEnergyUnit = " + response);
     }
   

@@ -17,6 +17,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { EnergyComponent } from './energy/energy.component';
+import { WebHomeComponent } from './web-home/web-home.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { EnergyComponent } from './energy/energy.component';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        EnergyComponent
+        EnergyComponent,
+        WebHomeComponent
     ],
     providers: [
         AuthGuard,

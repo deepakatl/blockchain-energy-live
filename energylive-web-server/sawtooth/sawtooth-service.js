@@ -15,11 +15,11 @@ class SawtoothRestService{
 
     //REST_API_BASE_URL = 'http://localhost:4200/api';
 
-    constructor(url) { 
+    constructor(url, familyName, familyVersion) { 
         //const http =new HttpClient();
         this.REST_API_BASE_URL = url;
-        this.FAMILY_NAME = 'user';
-        this.FAMILY_VERSION = '1.0';
+        this.FAMILY_NAME = familyName;
+        this.FAMILY_VERSION = familyVersion;
         
       }
     

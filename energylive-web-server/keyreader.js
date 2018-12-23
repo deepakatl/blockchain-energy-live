@@ -30,12 +30,12 @@ class PrivateKeyReader{
         
     }
 }
-var pkr = new PrivateKeyReader('pk1.pem');
-//pkr.writeRandomPK();
-let key = pkr.getPrivateKey();
-console.log(key);
-const context = createContext('secp256k1');
-let signer = new CryptoFactory(context).newSigner(key);
-let publicKey = signer.getPublicKey().asHex();
+// var pkr = new PrivateKeyReader('pk1.pem');
+// //pkr.writeRandomPK();
+// let key = pkr.getPrivateKey();
+// console.log(key);
+// const context = createContext('secp256k1');
+// let signer = new CryptoFactory(context).newSigner(key);
+// let publicKey = signer.getPublicKey().asHex();
 
 module.exports = PrivateKeyReader;

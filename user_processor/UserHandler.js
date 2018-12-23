@@ -126,13 +126,13 @@ class UserHandler extends TransactionHandler{
     // Select the action to be performed
     console.log("UserHandler action =" + update.action);
     let actionFn
-    if (update.action === 'create_user') { 
+    if (update.action === 'create') { 
       actionFn = createUser
-    }else if(update.action === 'authenticate_user'){
+    }else if(update.action === 'authenticate'){
       actionFn = authenticate;
     }
     else {	
-      throw new InvalidTransaction(`Action must be create_user`)		
+      throw new InvalidTransaction(`Action must be create or authenticate`)		
     }
 
     // Get the current state, for the key's address:

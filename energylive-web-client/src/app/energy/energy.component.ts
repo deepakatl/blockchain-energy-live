@@ -29,11 +29,36 @@ export class EnergyComponent implements OnInit {
   
     onSubmit() {
         console.log('energyUnit:' + this.energyUpdateForm.get('energyUnit').value);
-        let loginResult = this.energyService.updateEnergy(this.energyUpdateForm.get('energyUnit').value, 'ttt');
+        let user = JSON.parse(localStorage.getItem("currentUser"))[0];
+        let loginResult = this.energyService.updateEnergy(this.energyUpdateForm.get('energyUnit').value, user.email);
         loginResult.then((result)=>{
             console.log(result + ' ' + this.router + result);
             this.router.navigate(['home']);
         });
     }
+
+    generate() {
+      console.log('energyUnit:' + this.energyUpdateForm.get('energyUnit').value);
+      let user = JSON.parse(localStorage.getItem("currentUser"))[0];
+      let value = this.energyUpdateForm.get('energyUnit').value;
+      let energyQuantity = Number.parseInt(value);
+      let loginResult = this.energyService.updateEnergy(energyQuantity , user.email);
+      loginResult.then((result)=>{
+          console.log(result + ' ' + this.router + result);
+          this.router.navigate(['home']);
+      });
+    }
+
+    consume() {
+      console.log('energyUnit:' + this.energyUpdateForm.get('energyUnit').value);
+      let user = JSON.parse(localStorage.getItem("currentUser"))[0];
+      let value = this.energyUpdateForm.get('energyUnit').value;
+      let energyQuantity = Number.parseInt(value) * -1;
+      let loginResult = this.energyService.updateEnergy(energyQuantity , user.email);
+      loginResult.then((result)=>{
+          console.log(result + ' ' + this.router + result);
+          this.router.navigate(['home']);
+      });
+  }
 
 }

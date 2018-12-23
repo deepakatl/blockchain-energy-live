@@ -8,7 +8,7 @@ export class EnergyService {
     AUTH_URL ="http://localhost:3000/energy/update";
     constructor(private http: HttpClient) { }
 
-    updateEnergy(energyUnit: string, email: string):any {
+    updateEnergy(energyUnit: Number, email: string):any {
           const fetchOptions = {
             method: 'POST',
             

@@ -29,10 +29,7 @@ router.post('/update', function (req, res) {
             }
             console.log("Request reach here - update solar energy" + energy);
             let energyService = new EnergyService();
-            energyService.generateEnergy(energy, privateKey);
-            res.status(200).send({result: 'success',
-			energy	
-            });
+            energyService.generateEnergy(JSON.stringify(energy), privateKey);
 
         }
         res.status(200).send("Success");

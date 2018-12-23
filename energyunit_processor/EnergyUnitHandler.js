@@ -34,13 +34,13 @@ const _hash = (x) => crypto.createHash('sha512').update(x).digest('hex').toLower
 var encoder = new TextEncoder('utf8')
 var decoder = new TextDecoder('utf8')
 const MIN_VALUE = 0
-const CJ_FAMILY = 'energyunit'
+const CJ_FAMILY = 'energy'
 const CJ_NAMESPACE = _hash(CJ_FAMILY).substring(0, 6)
 
 //function to obtain the payload obtained from the client
 const _decodeRequest = (payload) =>
   new Promise((resolve, reject) => {
-    payload = payload.toString().split(',')
+    payload = payload.toString().split('~')
     if (payload.length === 2) {
       resolve({
         action: payload[0],
@@ -82,8 +82,9 @@ const updateEnergyUnit =(context, address, quantity, userPK)  => (possibleAddres
   }
   else{
     count = decoder.decode(stateValueRep)
-    newCount = parseInt(count) + quantity
-    console.log("Cookies in the jar:"+newCount)
+    //newCount = parseInt(count) + quantity;
+    newCount = quantity;
+    console.log("Energy balance in the account:"+newCount)
   }
   
   let strNewCount = newCount.toString()
@@ -110,22 +111,19 @@ class EnergyUnitHandler extends TransactionHandler{
     if (quantity === null || quantity === undefined) {
       throw new InvalidTransaction('Value is required')
     }
-    quantity = parseInt(quantity)
-    if (typeof quantity !== "number" ||  quantity <= MIN_VALUE) {
-      throw new InvalidTransaction(`Value must be an integer ` + `no less than 1`)
-    }
+   
 
     // Select the action to be performed
     console.log("Action EnergyHandler" + update.action);
     let actionFn
-    if (update.action === 'generate_solar') { 
+    if (update.action === 'update') { 
       actionFn = updateEnergyUnit
-    }else if(update.action === 'update_solar'){
+    }else if(update.action === 'consume'){
 
     }
     
     else {	
-      throw new InvalidTransaction(`Action must be bake or eat `)		
+      throw new InvalidTransaction(`Action must be update or consume `)		
     }
 
     // Get the current state, for the key's address:

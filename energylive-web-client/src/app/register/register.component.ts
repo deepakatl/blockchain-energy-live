@@ -5,7 +5,9 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, UserService } from '../_services';
 
-@Component({templateUrl: 'register.component.html'})
+@Component({templateUrl: 'register.component.html',
+            styleUrls: ['register.component.css']
+})
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
@@ -32,11 +34,6 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
 
         this.loading = true;
         let registerResult = this.userService.register(this.f.firstName.value, this.f.lastName.value,
