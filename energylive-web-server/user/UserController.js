@@ -78,7 +78,7 @@ router.post('/login', function (req, res) {
 router.post('/getapprovalrequiredusers', function (req, res) {
     User.find({
        type: 'customer',
-       status:''
+       status:{ $nin: ["active"] }
     }, 
     function (err, users) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
