@@ -45,7 +45,7 @@ class SawtoothRestService{
         return userKeyAddress;
       }
 
-      async sendData(action, values, address, privateKey) {
+      async sendData(action, values, address, privateKey, tariffAddress) {
         const context = createContext('secp256k1');
         //const privateKey = pkr.getPrivateKey();
         const signer = new CryptoFactory(context).newSigner(privateKey);
@@ -56,7 +56,7 @@ class SawtoothRestService{
         // Encode the payload
         const payload = this.getEncodedData(action, values);
     
-        const transactionsList = this.getTransactionsList(payload, userKeyAddress, signer, publicKey);
+        const transactionsList = this.getTransactionsList(payload, userKeyAddress, signer, publicKey, tariffAddress);
         const batchList = this.getBatchList(transactionsList, signer, publicKey);
     
         // Send the batch to REST API
@@ -165,10 +165,15 @@ class SawtoothRestService{
       /*------------------------------------*/
     
       /*-------------Creating transactions & batches--------------------*/
-       getTransactionsList(payload, sawtoothAddress, signer, publicKey) {
+       getTransactionsList(payload, sawtoothAddress, signer, publicKey, tariffAddress) {
         // Create transaction header
         //let sawtoothAddress = address + this.userKeyAddress;
-        const transactionHeader = this.getTransactionHeaderBytes([sawtoothAddress], [sawtoothAddress], payload, publicKey);
+        //let tariffAddress = "79436d7c155b74af84209c0713a145f99ce4fa55dd8b7054162100b7b7bbf0870d8d73";
+        let addressList = [sawtoothAddress];
+        if(tariffAddress !== undefined ){
+          addressList.push(tariffAddress);
+        }
+        const transactionHeader = this.getTransactionHeaderBytes(addressList, [sawtoothAddress], payload, publicKey);
         // Create transaction
         const transaction = this.getTransaction(transactionHeader, payload, signer);
         // Transaction list

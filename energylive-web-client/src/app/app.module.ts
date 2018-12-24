@@ -23,6 +23,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ApproveUserComponent } from './approve-user/approve-user.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TariffComponent } from './tariff/tariff.component';
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         WebHomeComponent,
         AdminHomeComponent,
         UpdateUserComponent,
-        ApproveUserComponent
+        ApproveUserComponent,
+        TariffComponent
     ],
     providers: [
         AuthGuard,

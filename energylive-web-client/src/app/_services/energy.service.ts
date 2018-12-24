@@ -23,11 +23,11 @@ export class EnergyService {
           
           return fetch(this.AUTH_URL +"/update", fetchOptions)
             .then(function(response) {
-                return response.json();
+                return response;
             })
-            .then(function(user) {
-                 console.log(JSON.stringify(user));
-                 return user;
+            .then(function(response) {
+                 console.log(response);
+                 return response;
              });
     }
 
@@ -47,9 +47,35 @@ export class EnergyService {
           .then(function(response) {
               return response.json();
           })
-          .then(function(user) {
-               console.log(JSON.stringify(user));
-               return user;
+          .then(function(response) {
+               console.log(response);
+               return response;
            });
   }
+
+  updateTariff(peak: string, offpeak: string, normal: string, email: string):any {
+    const fetchOptions = {
+      method: 'POST',
+      
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body : JSON.stringify({
+        peak: peak,
+        offpeak : offpeak,
+        normal: normal,
+        email: email
+    })
+    }
+    
+    return fetch(this.AUTH_URL +"/updatetariff", fetchOptions)
+      .then(function(response) {
+          return response;
+      })
+      .then(function(response) {
+           console.log(response);
+           return response;
+       });
+}
+
 }

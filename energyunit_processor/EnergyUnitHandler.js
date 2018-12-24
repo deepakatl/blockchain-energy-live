@@ -72,12 +72,15 @@ const _setEntry = (context, address, stateValue) => {
 }
 
 //function to bake a cookie
-const updateEnergyUnit =(context, address, quantity, userPK)  => (possibleAddressValues) => {
+const updateEnergyUnit =(context, address, quantity, userPK, tariffAddress)  => (possibleAddressValues) => {
   let stateValueRep = possibleAddressValues[address]
+  let tariffState = possibleAddressValues[tariffAddress];
+  const decodedTariff = decoder.decode(tariffState);
+  console.log("Tariff = " + decodedTariff);
   let newCount = 0
   let count
   if (stateValueRep == null || stateValueRep == ''){
-    console.log("No previous cookies, creating new cookie jar ")
+    console.log("No previous Energy data, creating new ... ")
     newCount = quantity
   }
   else{
@@ -105,6 +108,12 @@ const updateEnergyUnit =(context, address, quantity, userPK)  => (possibleAddres
   return _setEntry(context, address, strNewCount)
 }
 
+const updateTariff =(context, address, tariff, userPK)  => (possibleAddressValues) => {
+  let tariffString = JSON.stringify(tariff);
+  console.log("Update Tariff = " + tariffString);
+  return _setEntry(context, address, tariffString)
+}
+
 
 class EnergyUnitHandler extends TransactionHandler{
   constructor(){
@@ -121,6 +130,7 @@ class EnergyUnitHandler extends TransactionHandler{
       throw new InvalidTransaction('Action is required')
     }
     let quantity = update.quantity
+    let energyJson = JSON.parse(quantity);
     console.log("Generated Energy " + quantity);
     if (quantity === null || quantity === undefined) {
       throw new InvalidTransaction('Value is required')
@@ -128,12 +138,15 @@ class EnergyUnitHandler extends TransactionHandler{
    
 
     // Select the action to be performed
-    console.log("Action EnergyHandler" + update.action);
+    console.log("Action EnergyHandler =" + update.action);
     let actionFn
     if (update.action === 'update') { 
       actionFn = updateEnergyUnit
     }else if(update.action === 'consume'){
 
+    }else if(update.action === 'tariff'){
+      console.log("Going to update Tariff");
+      actionFn = updateTariff;
     }
     
     else {	
@@ -142,13 +155,18 @@ class EnergyUnitHandler extends TransactionHandler{
 
     // Get the current state, for the key's address:
     let Address = CJ_NAMESPACE + _hash(userPublicKey).slice(-64)
-    let getPromise = context.getState([Address]);
+    //let tariffAddress = "79436d7c155b74af84209c0713a145f99ce4fa55dd8b7054162100b7b7bbf0870d8d73";
+    let addressList = [Address];
+    if(energyJson.tariffAddress !== undefined){
+      addressList.push(energyJson.tariffAddress);
+    }
+    let getPromise = context.getState(addressList);
     // if (update.action == 'bake')
     //   getPromise = context.getState([Address])
     // else
     //   getPromise = context.getState([Address])
     let actionPromise = getPromise.then(
-      actionFn(context,Address, quantity, userPublicKey)
+      actionFn(context,Address, quantity, userPublicKey, energyJson.tariffAddress)
       )
     
     return actionPromise.then(addresses => {

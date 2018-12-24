@@ -10,13 +10,13 @@ class EnergyService{
     }
 
   
-    generateEnergy(energyQuantity, privateKey){
+    generateEnergy(energyQuantity, privateKey, tariffAddress){
         console.log("Going to update generated energy unit");
   
         let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
         //this.sawtoothService.hash(this.FAMILY_TYPE_SOLAR).substr(0, 4);
-        
-        let response = this.sawtoothService.sendData("update", [energyQuantity], address, privateKey)//;
+        //energyQuantity.tariffAddress = tariffAddress;
+        let response = this.sawtoothService.sendData("update", [energyQuantity], address, privateKey, tariffAddress)//;
        
         console.log("updateGeneratedEnergyUnit = " + response);
     }
@@ -38,6 +38,14 @@ class EnergyService{
         console.log('Balance =' + JSON.stringify(state));
 
         
+    }
+
+    updateTariff(tariff, privateKey){
+        console.log("Going to update tariff");
+        let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
+        let response = this.sawtoothService.sendData("tariff", [tariff], address, privateKey)//;
+        console.log("Tariff Update = " + response);
+        return address + this.sawtoothService.getAddress(privateKey);
     }
   
     updateGeneratedSolarEnergyUnit(genValue){
