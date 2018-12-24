@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EnergyService {
-    AUTH_URL ="http://localhost:3000/energy/update";
+    AUTH_URL ="http://localhost:3000/energy";
     constructor(private http: HttpClient) { }
 
     updateEnergy(energyUnit: Number, email: string):any {
@@ -21,7 +21,7 @@ export class EnergyService {
           })
           }
           
-          return fetch(this.AUTH_URL , fetchOptions)
+          return fetch(this.AUTH_URL +"/update", fetchOptions)
             .then(function(response) {
                 return response.json();
             })
@@ -30,4 +30,26 @@ export class EnergyService {
                  return user;
              });
     }
+
+    getBalance(email: string):any {
+        const fetchOptions = {
+          method: 'POST',
+          
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body : JSON.stringify({
+            email: email
+        })
+        }
+        
+        return fetch(this.AUTH_URL +"/getBalance", fetchOptions)
+          .then(function(response) {
+              return response.json();
+          })
+          .then(function(user) {
+               console.log(JSON.stringify(user));
+               return user;
+           });
+  }
 }

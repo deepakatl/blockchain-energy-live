@@ -36,4 +36,28 @@ router.post('/update', function (req, res) {
     });
 });
 
+router.post('/getBalance', function (req, res) {
+    console.log("User " + JSON.stringify(req.body));
+    
+    User.find({
+        email : req.body.email,
+        status: 'active'
+    },
+    function (err, user) {
+        if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        let privateKey = user[0].privatekey;
+        const hexPrivateKey = privateKey.toString('hex');
+        privateKey = PrivateKeyUtil.getPrivateKeyFromString(hexPrivateKey);
+        let energyService = new EnergyService();
+        let result = energyService.getBalance(user, privateKey);
+        result.then((response) => {
+            console.log(response);
+            res.status(200).send(response);
+          })
+        
+    });    
+
+});
+
+
 module.exports = router;

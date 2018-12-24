@@ -2,19 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { User } from '../_models';
-import { UserService } from '../_services';
+import { UserService, EnergyService } from '../_services';
 
 @Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {
-    currentUser: User;
+    currentUser;
+    energyBalance;
     
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private energyService: EnergyService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'))[0];
+        
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+        console.log("Going to fetch balance");
+        let userAccount =this.energyService.getBalance(this.currentUser.email);
+        userAccount.then((response) => {
+            console.log(response);
+            this.energyBalance = response.energyunit;
+          })
+        
     }
 
     deleteUser(id: number) {

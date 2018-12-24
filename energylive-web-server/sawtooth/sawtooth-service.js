@@ -34,7 +34,17 @@ class SawtoothRestService{
       hash(v) {
         return createHash('sha512').update(v).digest('hex');
       }
-    
+      
+      getAddress(privateKey){
+        const context = createContext('secp256k1');
+        //const privateKey = pkr.getPrivateKey();
+        const signer = new CryptoFactory(context).newSigner(privateKey);
+        const publicKey = signer.getPublicKey().asHex();
+        // Creating address
+        const userKeyAddress =  this.hash(publicKey).substr(0, 64);
+        return userKeyAddress;
+      }
+
       async sendData(action, values, address, privateKey) {
         const context = createContext('secp256k1');
         //const privateKey = pkr.getPrivateKey();

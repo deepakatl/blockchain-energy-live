@@ -20,6 +20,25 @@ class EnergyService{
        
         console.log("updateGeneratedEnergyUnit = " + response);
     }
+
+    getBalance(user, privateKey){
+        console.log("Get User account balance " + user.email);
+        let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
+        let userAddress = address + this.sawtoothService.getAddress(privateKey);
+        return this.sawtoothService.getState(userAddress)
+        .then((response) => {
+            console.log(response);
+            return response.json();
+          })
+          .then((responseJson) => {
+              console.log(responseJson);
+              let response = this.sawtoothService.getDecodedData(responseJson);
+            return response;
+          })
+        console.log('Balance =' + JSON.stringify(state));
+
+        
+    }
   
     updateGeneratedSolarEnergyUnit(genValue){
       console.log("Going to update generated energy unit");

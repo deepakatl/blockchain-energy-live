@@ -81,9 +81,22 @@ const updateEnergyUnit =(context, address, quantity, userPK)  => (possibleAddres
     newCount = quantity
   }
   else{
-    count = decoder.decode(stateValueRep)
+    count = decoder.decode(stateValueRep);
+    count = JSON.parse(count);
+    console.log("Existing count "+ count.energyunit);
+    console.log("Generated count "+ quantity.energyunit);
+    quantity = JSON.parse(quantity);
+    if(count.energyunit === null || count.energyunit === undefined || count.energyunit ===''){
+      count.energyunit = "0";
+    }
+
+    if(quantity.energyunit === null || quantity.energyunit === undefined || quantity.energyunit ===''){
+      quantity.energyunit = "0";
+    }
+    let balanceEnergy = parseInt(count.energyunit) + parseInt(quantity.energyunit);
+    quantity.energyunit = balanceEnergy;
     //newCount = parseInt(count) + quantity;
-    newCount = quantity;
+    newCount = JSON.stringify(quantity);
     console.log("Energy balance in the account:"+newCount)
   }
   
@@ -108,6 +121,7 @@ class EnergyUnitHandler extends TransactionHandler{
       throw new InvalidTransaction('Action is required')
     }
     let quantity = update.quantity
+    console.log("Generated Energy " + quantity);
     if (quantity === null || quantity === undefined) {
       throw new InvalidTransaction('Value is required')
     }

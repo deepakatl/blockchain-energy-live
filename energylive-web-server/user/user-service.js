@@ -9,13 +9,21 @@ class UserService{
 
   
     createUser(user, privateKey){
-        console.log("Going to create new User");
+        console.log("Going to create new User " + JSON.stringify(user));
         let address =  this.sawtoothService.hash(this.FAMILY_NAME).substr(0, 6);
         //this.sawtoothService.hash(this.FAMILY_TYPE_SOLAR).substr(0, 4);
-        
-        let response = this.sawtoothService.sendData("create", [user], address, privateKey)//;
+        user = JSON.stringify(user);
+        user = JSON.parse(user);
+        delete user.privatekey;
+        let response = this.sawtoothService.sendData("create", [JSON.stringify(user)], address, privateKey)//;
         console.log("Created User = " + user);
     }
+
+    updateUser(user, privateKey){
+        console.log("Update User =" + user);
+        this.createUser(user, privateKey);
+    }
+
 
     authenticate(user, privateKey){
         console.log("Going to authenticate  User in chain");

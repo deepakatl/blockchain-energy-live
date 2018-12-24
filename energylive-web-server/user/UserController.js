@@ -35,8 +35,7 @@ router.post('/register', function (req, res) {
     function (err, user) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
         console.log("Going to create user in chain " + user);
-        delete newUser.privatekey;
-        userService.createUser(JSON.stringify(newUser), privateKey);
+        userService.createUser(user, privateKey);
 
         // userService.createUser({
         //     firstName : 'ddd',
@@ -100,10 +99,15 @@ router.post('/approve', function (req, res) {
         req.body, {new: true},
     function (err, user) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        let privateKey = user.privatekey;
+        const hexPrivateKey = privateKey.toString('hex');
+        privateKey = PrivateKeyUtil.getPrivateKeyFromString(hexPrivateKey);
+        userService.updateUser(user, privateKey);
         res.status(200).send(user);
     });    
 
 });
+
 
 // RETURNS ALL THE USERS IN THE DATABASE
 router.get('/*', function (req, res) {

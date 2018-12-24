@@ -80,7 +80,7 @@ const createUser =(context, address, user, userPK)  => (possibleAddressValues) =
   }
   else{
     let existingUser = decoder.decode(stateValueRep);
-    console.log("Existing User "+ existingUser);
+    console.log("Existing User "+ JSON.stringify(existingUser));
     console.log("Modified to User "+ user);
   }
   
