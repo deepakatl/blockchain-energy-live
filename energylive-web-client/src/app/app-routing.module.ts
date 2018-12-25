@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { GenerateComponent }      from './energy/generate.component';
-import { ConsumeComponent } from './energy/consume.component';
-import { CountComponent } from './energy/count.component';
+import { GenerateComponent } from './energy/energy.component';
+import { ConsumeComponent } from './energy/energy.component';
+import { CountComponent } from './energy/energy.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+
 
 
 const routes: Routes = [
@@ -19,30 +21,35 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: LoginComponent
-	children: [
-	  {
-	  path: 'generate'
-	  component: GenerateComponent
+        component: LoginComponent,
+
+
+        children: [
+          {
+            path: 'generate',
+            component: GenerateComponent
           },
           {
-          path: 'consume',
-          component: ConsumeComponent
+            path: 'consume',
+            component: ConsumeComponent
           },
-	  {
-          path: 'count',
-          component: CountComponent
+          {
+            path: 'count',
+            component: CountComponent
           }
-	    ] 
+        ]
+      }
+    ]
   }
-  
+]
+
 @NgModule({
   imports: [RouterModule.forRoot(routes),
     CommonModule
   ],
   exports: [RouterModule],
-   // CommonModule
-  
+  // CommonModule
+
   declarations: []
 })
 export class AppRoutingModule { }

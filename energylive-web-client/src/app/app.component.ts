@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-export class AppComponent { }
 
 @Component({
   selector: 'app-root',
-  @Component({templateUrl: 'energy.component.html'})`
+  template: `
   <nav>
   <ul>
     <li>
@@ -27,3 +26,4 @@ export class AppComponent {
   constructor(private routerModule: RouterModule){}
 
 }
+

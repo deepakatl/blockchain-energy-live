@@ -3,14 +3,17 @@ import { RouterModule } from '@angular/router';
 import { SawtoothService } from '../sawtooth.service';
 
 
-@Component({templateUrl: 'energy.component.html'})
-  selector: 'app-generate', `
-  <div class="generate">
+
+
+@Component({
+  selector: 'app-generate',
+  template: `
+  <div class="bake">
   <div class="form">
-    <form class="generate" (submit)="generateEnergy($event)">
-  <input id="energy_id" type="text" placeholder="Energy units in KWh"/>
+    <form class="bake" (submit)="generateEnergy($event)">
+  <input id="bake_id" type="text" placeholder="Energy in units KWh"/>
  
-  <button id="submit" type="submit" >generate</button>
+  <button id="submit" type="submit" >Bake</button>
 
   </form>
   </div>
@@ -24,7 +27,7 @@ import { SawtoothService } from '../sawtooth.service';
 })
 export class GenerateComponent implements OnInit {
 
-  constructor(private Data : SawtoothService,private router :RouterModule) { }
+  constructor(private Data : SawtoothService,private router :RouterModule) { }//////////////////////
 
   ngOnInit() {
   }
@@ -32,20 +35,14 @@ export class GenerateComponent implements OnInit {
    
       event.preventDefault()
       const target = event.target
-      const energyvalue = target.querySelector('#energy_id').value;
-      this.Data.sendData("generate", energyvalue);
-      console.log(energyvalue);
+      const bakevalue = target.querySelector('#bake_id').value;//////////////////////
+      this.Data.sendData("generate", bakevalue);
+      console.log(bakevalue);
     }
   
 
 }
 
-
-
-
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SawtoothService } from '../sawtooth.service';
 
 @Component({
   selector: 'app-consume',
@@ -69,7 +66,7 @@ import { SawtoothService } from '../sawtooth.service';
 })
 export class ConsumeComponent implements OnInit {
 
-  constructor(private Data : SawtoothService,private router :RouterModule) { }
+  constructor(private Data : SawtoothService,private router :RouterModule) { }///////////////////////
 
   ngOnInit() {
   }
@@ -78,16 +75,14 @@ export class ConsumeComponent implements OnInit {
       event.preventDefault()
       const target = event.target
       const energyvalue = target.querySelector('#energy_id').value;
-      this.Data.sendData("consume", energyvalue);
+      this.Data.sendData("consume", energyvalue);//////////////////
       console.log(energyvalue);
     }
   
 
 }
 
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SawtoothService } from '../sawtooth.service';
+
 
 @Component({
   selector: 'app-count',
@@ -111,7 +106,7 @@ import { SawtoothService } from '../sawtooth.service';
 })
 export class CountComponent implements OnInit {
 
-  constructor(private Data : SawtoothService,private router :RouterModule) { }
+ constructor(private Data : SawtoothService,private router :RouterModule) { }///////////////////// 
 
   ngOnInit() {
   }
@@ -120,9 +115,15 @@ export class CountComponent implements OnInit {
       event.preventDefault()
       const target = event.target
       const energyvalue = target.querySelector('#energy_id').value;
-      this.Data.sendData("consume", energyvalue);
+      this.Data.sendData("count", energyvalue);////////////////////////
       console.log(energyvalue);
     }
   
 
 }
+
+
+
+
+
+

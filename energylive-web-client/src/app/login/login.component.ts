@@ -24,12 +24,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private router : Router ,private Data : SawtoothService) { 
-    this.Data.clearLogin();
+  this.Data.clearLogin();
   }
 
   ngOnInit() {
-    this.Data.clearLogin();
-    //this.router.navigate(['login/home']);
+   this.Data.clearLogin();
+   this.router.navigate(['login/home']);
   } 
 
   
@@ -47,8 +47,7 @@ onChange(event) {
         console.log("target result",event.target);
         const login = dataService.setLogin(file.name,result);
         if(login!=false) {
-          router.navigate(['login/home']);
-        }
+        router.navigate(['login/home']);  }
 
     };
     

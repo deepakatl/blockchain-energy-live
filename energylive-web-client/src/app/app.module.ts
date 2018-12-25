@@ -5,20 +5,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
-
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
-
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertService, AuthenticationService, UserService } from './_services';
+
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
-import { GenerateComponent }      from './energy/generate.component';
-import { ConsumeComponent } from './energy/consume.component';
-import { CountComponent } from './energy/count.component';
+import { GenerateComponent } from './energy/energy.component';
+import { ConsumeComponent } from './energy/energy.component';
+import { CountComponent } from './energy/energy.component';
 
 @NgModule({
     imports: [
@@ -34,8 +33,10 @@ import { CountComponent } from './energy/count.component';
         LoginComponent,
         RegisterComponent,
         GenerateComponent,
-	ConsumeComponent
-	CountComponenet
+	ConsumeComponent,
+	CountComponent,
+	
+	
     ],
     providers: [
         AuthGuard,

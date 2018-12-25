@@ -1,0 +1,6 @@
+A file named DOCUMENTATION. It should have:
+o Documentation of the code flow/ code structure. Any/all modules involved and entry
+points of it. Include diagrams if any.
+o Documentation should be there for both client and Transaction processor in the same
+file, separately.
+

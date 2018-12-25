@@ -1,0 +1,7 @@
+A file named DESIGN_DECISIONS. It should have:
+o Design decisions made in the application and the reason.
+o For example, what is the logic/thought behind the addressing scheme design
+for the application.
+o Design decisions can include decisions to not to do as well.
+o A design decision is any (major) choice/decision that you take about how your
+application should work

@@ -4,14 +4,14 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AuthGuard } from './_guards';
-import { EnergyComponent } from './energy/energy.component';
+import { GenerateComponent } from './energy/energy.component';
 
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'energy', component: EnergyComponent },
+    { path: 'generate', component: GenerateComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
