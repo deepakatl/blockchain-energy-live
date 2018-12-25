@@ -120,6 +120,8 @@ class EnergyUnitHandler extends TransactionHandler{
     let actionFn
     if (update.action === 'generate_solar') { 
       actionFn = updateEnergyUnit
+    }else if(update.action === 'update_solar'){
+
     }
     
     else {	
